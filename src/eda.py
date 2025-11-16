@@ -77,13 +77,14 @@ def run_full_eda(df: pd.DataFrame, output_dir="outputs/eda/"):
     os.makedirs(output_dir, exist_ok=True)
 
     describe_data(df)
-    plot_correlation_heatmap(df, os.path.join(output_dir, "corr_heatmap.png"))
     for cat_col in ["channel", "campaign"]:
         plot_boxplot(df, cat_col, os.path.join(output_dir, f"roi_by_{cat_col}.png"))
-
+    
+    plot_correlation_heatmap(df, os.path.join(output_dir, "corr_heatmap.png"))
+    
     # Scatter ROI vs numeric features quan trọng
     for num_col in ["cpa", "cpc", "cost"]:
         plot_scatter_roi(df, num_col, os.path.join(output_dir, f"roi_vs_{num_col}.png"))
     plot_roi_distribution(df, os.path.join(output_dir, "roi_distribution.png"))
 
-    log("🎉 Hoàn thành EDA!")
+    log("Hoàn thành EDA!")

@@ -8,7 +8,7 @@ from src.utils import log, ensure_dir, save_fig
 
 # 1. Evaluate 1 model
 def evaluate_model(model, X_test, y_test):
-    log("📊 Đang đánh giá mô hình...")
+    log("Đang đánh giá mô hình...")
 
     preds = model.predict(X_test)
 
@@ -93,9 +93,14 @@ def evaluate_models(rf_model, gb_model, X_test, y_test):
 
     ensure_dir("outputs/plots")
 
-    # Save plots for RF model only (you can extend for GB too)
+    # Save plots for RF model
     plot_actual_vs_pred(y_test, rf_result["preds"], "outputs/plots/actual_vs_pred_rf.png")
     plot_residuals(y_test, rf_result["preds"], "outputs/plots/residuals_rf.png")
     plot_feature_importance(rf_model, X_test.columns, "outputs/plots/feature_importance_rf.png")
 
+    # Save plots for GB model
+    plot_actual_vs_pred(y_test, gb_result["preds"], "outputs/plots/actual_vs_pred_gb.png")
+    plot_residuals(y_test, gb_result["preds"], "outputs/plots/residuals_gb.png")
+    plot_feature_importance(gb_model, X_test.columns, "outputs/plots/feature_importance_gb.png")
+    
     return summary_df
