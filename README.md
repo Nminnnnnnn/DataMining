@@ -1,4 +1,4 @@
-# Data Mining Project
+# Data Mining Assignment
 
 ## Yêu cầu
 - Python 3.x
